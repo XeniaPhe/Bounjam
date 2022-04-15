@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] CharacterController2D characterController;
+    [SerializeField] float walkVelocity;
+
+    [SerializeField] Animator animator;
+
+    float horizontal;
+    float vertical;
+    bool jump;
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-
-        }
-        else if(Input.GetKeyDown(KeyCode.S))
-        {
-
-        }
-        else if(Input.GetKeyDown(KeyCode.A))
-        {
-
-        }
-        else if(Input.GetKeyDown(KeyCode.D))
-        {
-
-        }
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+        jump = Input.GetKeyDown(KeyCode.Space);
+    }
+    private void FixedUpdate()
+    {
+        characterController.Move(horizontal*walkVelocity, false, jump);
     }
 }
