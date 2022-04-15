@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    bool isJumping;
+    bool isWalking;
+    bool isGrounded;
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.W))
