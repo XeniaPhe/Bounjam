@@ -15,12 +15,18 @@ public class PlayerStats : MonoBehaviour
     [Header("UI")]
     public PlayerHealthBar playerHealthBar;
     public TrebleClef playerTrebleClef;
+    public UpgradePlayer upgradePlayer;
 
     private void Awake() => Instance = this;
 
     private void Start() => CoroutineStarter();
 
     public void CoroutineStarter() => StartCoroutine(Regeneration());
+
+    public void OpenUpgradePlayerUI()
+    {
+        upgradePlayer.gameObject.SetActive(true);
+    }
 
     public void IncreaseTrebleClef()
     {
