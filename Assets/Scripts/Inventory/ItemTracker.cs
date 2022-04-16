@@ -44,6 +44,7 @@ namespace Inventory
                 if(requiredItems[i].ID == newItem.ID)
                 {
                     requiredItems[i].isAcquired = true;
+                    ItemTrackerUI.Instance.UpdateBar(i);
                     break;
                 }
             }
