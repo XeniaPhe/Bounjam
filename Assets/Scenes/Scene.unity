@@ -512,7 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 5.25
   jumpForce: 1250
-  airControl: 1
+  airControl: 0
   head: {fileID: 1811697491}
   checkRadius: 0.05
   feet: {fileID: 1314514942}

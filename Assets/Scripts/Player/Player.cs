@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +15,12 @@ public class Player : MonoBehaviour
     [SerializeField] float checkRadius = 0.05f;
     [SerializeField] Transform feet;
 
-    float horizontal, vertical;
+    float horizontal,vertical;
 
     [SerializeField] LayerMask groundLayer;
 
     bool isGrounded, isBlocked,isJumping, isRunning,_jump;
-
+    bool isJumpingAnimated,isJumpingFallAnimated;
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -30,11 +31,18 @@ public class Player : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
         CheckPosition();
+        CheckJumping();
+        UpdateAnimations();
+    }
+
+    private void CheckJumping()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && !isJumping && isGrounded && !isBlocked && !_jump)
             _jump = true;
-
     }
+
     private void FixedUpdate()
     {
         Move();
@@ -64,21 +72,48 @@ public class Player : MonoBehaviour
         {
             _jump = false;
             isJumping = true;
+            isJumpingAnimated = false;
             rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
         }
 
         isRunning = true;
-        if (horizontal > 0)
+        if(airControl || isGrounded || !isJumping)
         {
-            rigidbody.velocity = new Vector2(runSpeed, rigidbody.velocity.y);
-            transform.localScale = new Vector3(1, 1, 1);
+            if (horizontal > 0)
+            {
+                rigidbody.velocity = new Vector2(runSpeed, rigidbody.velocity.y);
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if (horizontal < 0)
+            {
+                rigidbody.velocity = new Vector2(-runSpeed, rigidbody.velocity.y);
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else if (horizontal == 0 && rigidbody.velocity.x == 0)
+                isRunning = false;
         }
-        else if (horizontal < 0)
+    }
+    private void UpdateAnimations()
+    {
+        if (isJumping && !isJumpingAnimated)
         {
-            rigidbody.velocity = new Vector2(-runSpeed, rigidbody.velocity.y);
-            transform.localScale = new Vector3(-1, 1, 1);
+            animator.SetBool("Jumping", true);
+            isJumpingAnimated = true;
         }
-        else if (horizontal == 0 && rigidbody.velocity.x == 0)
-            isRunning = false;
+        else if (isJumping && isJumpingAnimated && !isJumpingFallAnimated && rigidbody.velocity.y < 0)
+        {
+            animator.SetBool("JumpingFall", true);
+            isJumpingFallAnimated = true;
+        }
+        else if(isJumpingAnimated && isJumpingFallAnimated && !isJumping && isGrounded)
+        {
+            animator.SetBool("Jumping", false);
+            animator.SetBool("JumpingFall", false);
+        }
+
+        if (!isJumping && isGrounded && isRunning)
+            animator.SetBool("Running", true);
+        else
+            animator.SetBool("Running", false);
     }
 }
