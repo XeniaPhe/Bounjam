@@ -55,7 +55,7 @@ public class PlayerStats : MonoBehaviour
 
     public void DecreaseTrebleClef(int value)
     {
-        trebleClef -= 1;
+        trebleClef -= value;
         playerTrebleClef.OnTrebleClefChange();
     }
 

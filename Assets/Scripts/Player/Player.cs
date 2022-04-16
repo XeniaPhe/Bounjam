@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] Transform head;
     [SerializeField] float checkRadius = 0.05f;
     [SerializeField] Transform feet;
+    [SerializeField] PlayerAttack playerAttack;
 
     float horizontal,vertical;
 
@@ -38,9 +39,16 @@ public class Player : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
 
         CheckPosition();
+        CheckAttack();
         CheckJumping();
         CheckInteraction();
         UpdateAnimations();
+    }
+
+    private void CheckAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Q)) playerAttack.SkillAttack1();
+        if (Input.GetKeyDown(KeyCode.W)) playerAttack.SkillAttack2();
     }
 
     private void CheckJumping()
