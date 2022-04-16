@@ -12,6 +12,7 @@ public class PlayerStats : MonoBehaviour
     public float healthRegenerationCooldown = 0.5f;
     public int maxHealth = 100;
     public int trebleClef = 0;
+    public float speed = 1;
     [Header("UI")]
     public PlayerHealthBar playerHealthBar;
     public TrebleClef playerTrebleClef;
@@ -23,14 +24,38 @@ public class PlayerStats : MonoBehaviour
 
     public void CoroutineStarter() => StartCoroutine(Regeneration());
 
-    public void OpenUpgradePlayerUI()
+    public void OpenUpgradePlayerUI() => upgradePlayer.ToggleUpgradePanel();
+
+    public void IncreaseAttack()
     {
-        upgradePlayer.ToggleUpgradePanel();
+        if (trebleClef < 2) return;
+        DecreaseTrebleClef(2);
+        attackDamage += 1;
+    }
+
+    public void IncreaseHealth()
+    {
+        if (trebleClef < 1) return;
+        DecreaseTrebleClef(1);
+        maxHealth += 1;
+    }
+
+    public void IncreaseSpeed()
+    {
+        if (trebleClef < 1) return;
+        DecreaseTrebleClef(1);
+        speed += 1;
     }
 
     public void IncreaseTrebleClef()
     {
         trebleClef += 1;
+        playerTrebleClef.OnTrebleClefChange();
+    }
+
+    public void DecreaseTrebleClef(int value)
+    {
+        trebleClef -= 1;
         playerTrebleClef.OnTrebleClefChange();
     }
 
@@ -40,10 +65,7 @@ public class PlayerStats : MonoBehaviour
         playerHealthBar.OnHealthBarChange(health, maxHealth);
     }
 
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
+    public void Die() => Destroy(gameObject);
 
     public IEnumerator Regeneration()
     {
