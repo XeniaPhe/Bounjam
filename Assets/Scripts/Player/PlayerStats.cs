@@ -25,7 +25,7 @@ public class PlayerStats : MonoBehaviour
 
     public void OpenUpgradePlayerUI()
     {
-        upgradePlayer.gameObject.SetActive(true);
+        upgradePlayer.ToggleUpgradePanel();
     }
 
     public void IncreaseTrebleClef()

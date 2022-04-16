@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class Statue : MonoBehaviour
 {
-    public void OpenUpgradePanel()
-    {
-        Debug.Log("hello!");
-    }
+    public void OpenUpgradePanel() => PlayerStats.Instance.OpenUpgradePlayerUI();
 }
