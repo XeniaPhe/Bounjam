@@ -1,5 +1,5 @@
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using TMPro;
 using UnityEngine;
 
 namespace Inventory
@@ -11,7 +11,7 @@ namespace Inventory
         [SerializeField] Color acquiredColor;
         [SerializeField] Color unacquiredColor;
         [SerializeField] Image itemImage;
-        [SerializeField] Text itemName;
+        [SerializeField] TMP_Text itemName;
         Item item;
 
         static int currentIndex=0;
