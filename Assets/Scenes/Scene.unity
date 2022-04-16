@@ -1066,6 +1066,7 @@ MonoBehaviour:
   trebleClef: 0
   playerHealthBar: {fileID: 1830713472}
   playerTrebleClef: {fileID: 873186580}
+  upgradePlayer: {fileID: 0}
 --- !u!1 &411637838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &547238177
 MonoBehaviour:
   m_ObjectHideFlags: 0
