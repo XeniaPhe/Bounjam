@@ -51,12 +51,19 @@ public class Player : MonoBehaviour
 
     private void CheckInteraction()
     {
+        bool isReward = false, isStatue = false;
         if (!Input.GetKeyDown(KeyCode.E)) return;
         Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Reward"));
-        if (!hitCollider) return;
-        Reward reward;
-        hitCollider.gameObject.TryGetComponent(out reward);
+        if (hitCollider) isReward = true;
+        if(!isReward) hitCollider = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Statue"));
+        if (hitCollider && !isReward) isStatue = true;
+        if (!(isStatue || isReward)) return;
+        Reward reward = null;
+        Statue statue = null;
+        if(isReward) hitCollider.gameObject.TryGetComponent(out reward);
         if(reward != null) reward.GetReward();
+        if(isStatue) hitCollider.gameObject.TryGetComponent(out statue);
+        if (statue != null) statue.OpenUpgradePanel();
     }
 
     private void FixedUpdate() => Move();
