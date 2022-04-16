@@ -40,5 +40,10 @@ namespace Inventory
             else 
                 barMask.color = unacquiredColor;
         }
+
+        public void LoadDetailsMenu()
+        {
+            ItemDetailsMenu.Instance.Load(item,transform.position);
+        }
     }
 }

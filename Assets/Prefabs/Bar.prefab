@@ -170,7 +170,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5740123713399174580}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5740123713399174582}
+        m_TargetAssemblyTypeName: Inventory.TrackMenuBar, Assembly-CSharp
+        m_MethodName: LoadDetailsMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5740123713399174580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,8 +342,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42.9, y: 0.000020027}
-  m_SizeDelta: {x: 514.2, y: 90}
+  m_AnchoredPosition: {x: 51.78, y: 0.000020027}
+  m_SizeDelta: {x: 496.439, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6709945425546200956
 CanvasRenderer:
@@ -395,7 +407,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 40
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
