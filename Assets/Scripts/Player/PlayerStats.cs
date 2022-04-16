@@ -62,7 +62,7 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(int damage)
     {
         if ((health -= damage) <= 0) Die();
-        playerHealthBar.OnHealthBarChange(health, maxHealth);
+        playerHealthBar.OnHealthBarChange();
     }
 
     public void Die() => Destroy(gameObject);
@@ -72,8 +72,8 @@ public class PlayerStats : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(healthRegenerationCooldown);
-            if(health < 100) health += 1;
-            playerHealthBar.OnHealthBarChange(health, maxHealth);
+            if(health < maxHealth) health += 1;
+            playerHealthBar.OnHealthBarChange();
         }
     }
 }
