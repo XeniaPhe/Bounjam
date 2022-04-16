@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats Instance;
+
     [Header("Stats")]
     public int attackDamage = 1;
     public int health = 25;
@@ -12,12 +14,18 @@ public class PlayerStats : MonoBehaviour
     public int trebleClef = 0;
     [Header("UI")]
     public PlayerHealthBar playerHealthBar;
+    public TrebleClef playerTrebleClef;
+
+    private void Awake() => Instance = this;
 
     private void Start() => CoroutineStarter();
 
-    public void CoroutineStarter()
+    public void CoroutineStarter() => StartCoroutine(Regeneration());
+
+    public void IncreaseTrebleClef()
     {
-        StartCoroutine(Regeneration());
+        trebleClef += 1;
+        playerTrebleClef.OnTrebleClefChange();
     }
 
     public void TakeDamage(int damage)
