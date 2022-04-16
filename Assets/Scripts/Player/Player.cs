@@ -95,6 +95,8 @@ public class Player : MonoBehaviour
     }
     private void UpdateAnimations()
     {
+        if (!animator) return;
+
         if (isJumping && !isJumpingAnimated)
         {
             animator.SetBool("Jumping", true);

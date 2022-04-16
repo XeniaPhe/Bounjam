@@ -510,9 +510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9077899fa67844abd5dc4d9fc48728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 5.25
+  runSpeed: 8
   jumpForce: 1250
-  airControl: 0
+  airControl: 1
   head: {fileID: 1811697491}
   checkRadius: 0.05
   feet: {fileID: 1314514942}
