@@ -112,7 +112,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3564952261728318163
@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 3564952262650849355}
   - component: {fileID: 3564952262650849354}
   - component: {fileID: 3564952262650849350}
+  - component: {fileID: 1709476973164285367}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -233,7 +234,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &3564952262650849355
@@ -304,3 +305,23 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1709476973164285367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3564952262650849357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2da79b24f6c43e980f7ef96966816c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 1
+  health: 0
+  healthRegenerationCooldown: 0.2
+  maxHealth: 100
+  trebleClef: 0
+  playerHealthBar: {fileID: 0}
+  playerTrebleClef: {fileID: 0}
+  upgradePlayer: {fileID: 0}
