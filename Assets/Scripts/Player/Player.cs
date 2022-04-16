@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public static Player Instance;
-
     new Rigidbody2D rigidbody;
     Animator animator;
 
@@ -23,9 +21,6 @@ public class Player : MonoBehaviour
 
     bool isGrounded, isBlocked,isJumping, isRunning,_jump;
     bool isJumpingAnimated,isJumpingFallAnimated;
-
-    private void Awake() => Instance = this;
-
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -39,7 +34,6 @@ public class Player : MonoBehaviour
 
         CheckPosition();
         CheckJumping();
-        CheckInteraction();
         UpdateAnimations();
     }
 
@@ -49,24 +43,10 @@ public class Player : MonoBehaviour
             _jump = true;
     }
 
-    private void CheckInteraction()
+    private void FixedUpdate()
     {
-        bool isReward = false, isStatue = false;
-        if (!Input.GetKeyDown(KeyCode.E)) return;
-        Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Reward"));
-        if (hitCollider) isReward = true;
-        if(!isReward) hitCollider = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Statue"));
-        if (hitCollider && !isReward) isStatue = true;
-        if (!(isStatue || isReward)) return;
-        Reward reward = null;
-        Statue statue = null;
-        if(isReward) hitCollider.gameObject.TryGetComponent(out reward);
-        if(reward != null) reward.GetReward();
-        if(isStatue) hitCollider.gameObject.TryGetComponent(out statue);
-        if (statue != null) statue.OpenUpgradePanel();
+        Move();
     }
-
-    private void FixedUpdate() => Move();
 
     public void CheckPosition()
     {
@@ -113,7 +93,6 @@ public class Player : MonoBehaviour
                 isRunning = false;
         }
     }
-
     private void UpdateAnimations()
     {
         if (!animator) return;
