@@ -46,12 +46,12 @@ public class Player : MonoBehaviour
 
     private void CheckAttack()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !isJumping && !isLanding)
         {
             playerAttack.SkillAttack1();
             isAttacking = true;
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && !isJumping && !isLanding)
         {
             playerAttack.SkillAttack2();
             isAttacking = true;
@@ -124,8 +124,10 @@ public class Player : MonoBehaviour
             {
                 rigidbody.velocity = new Vector2(runSpeed, rigidbody.velocity.y);
                 transform.localScale = new Vector3(1, 1, 1);
-                if(!isJumping && !isLanding)
+                if (!isJumping && !isLanding)
                     isRunning = true;
+                else
+                    isRunning = false;
             }
             else if (horizontal < 0)
             {
@@ -133,6 +135,8 @@ public class Player : MonoBehaviour
                 transform.localScale = new Vector3(-1, 1, 1);
                 if (!isJumping && !isLanding)
                     isRunning = true;
+                else
+                    isRunning = false;
             }
             else if (horizontal == 0)
             {
