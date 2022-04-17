@@ -22,8 +22,8 @@ public class CreditsLoader : MonoBehaviour
         oneOverFps = new WaitForSeconds(1f / creditsFps);
         waitNewName = new WaitForSeconds(timeBetweenNames);
         delta = 1f / fadeFrameCount;
-        EndGame();
     }
+
     public void EndGame()
     {
         fader.gameObject.SetActive(true);
