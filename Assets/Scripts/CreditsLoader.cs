@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine;
 
 public class CreditsLoader : MonoBehaviour
@@ -8,9 +8,9 @@ public class CreditsLoader : MonoBehaviour
     [SerializeField] CanvasGroup fader;
     [SerializeField] int fadeFrameCount;
     [SerializeField] int creditsFps;
-    [SerializeField] string[] creditsNames;
-    string thanks = "Thanks for playing our game!";
+    [SerializeField] TMP_Text[] texts;
     [SerializeField] float timeBetweenNames;
+
 
     WaitForSeconds oneOverFps;
     WaitForSeconds waitNewName;
@@ -22,11 +22,14 @@ public class CreditsLoader : MonoBehaviour
         oneOverFps = new WaitForSeconds(1f / creditsFps);
         waitNewName = new WaitForSeconds(timeBetweenNames);
         delta = 1f / fadeFrameCount;
+        EndGame();
     }
     public void EndGame()
     {
         fader.gameObject.SetActive(true);
         fader.alpha = 0f;
+        foreach (var item in texts)
+            item.gameObject.SetActive(false);
         StartCoroutine(Fade());
     }
 
@@ -39,14 +42,18 @@ public class CreditsLoader : MonoBehaviour
         }
 
         yield return null;
+
+        StartCoroutine(LoadCredits());
     }
 
     IEnumerator LoadCredits()
     {
-        foreach (var item in creditsNames)
+        int counter = 0;
+        do
         {
-
-        }
+            yield return waitNewName;
+            texts[counter++].gameObject.SetActive(true);
+        } while (counter<texts.Length);
 
         yield return null;  
     }
