@@ -188,7 +188,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 2730653179536545840}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: f1cf7eacc6cc49349971a6e825c38cd0, type: 2}
+  m_Material: {fileID: 6200000, guid: 9f718a4ff2df8834d9568f37dcfaba85, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -211,7 +211,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: f1cf7eacc6cc49349971a6e825c38cd0, type: 2}
+  m_Material: {fileID: 6200000, guid: 9f718a4ff2df8834d9568f37dcfaba85, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -228,13 +228,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd9077899fa67844abd5dc4d9fc48728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 8
-  jumpForce: 1250
+  runSpeed: 5
+  jumpForce: 300
   airControl: 1
   head: {fileID: 2730653179826924212}
   checkRadius: 0.05
   feet: {fileID: 2730653178297314555}
-  playerAttack: {fileID: 0}
+  playerAttack: {fileID: 1833507895}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 1
-  health: 0
+  health: 100
   healthRegenerationCooldown: 0.2
   maxHealth: 100
   trebleClef: 0
