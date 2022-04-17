@@ -29,6 +29,7 @@ public class StartCinematic : MonoBehaviour
     {
         yield return new WaitForSeconds(startCinematicEndTime);
         mainCamera.transform.GetChild(0).gameObject.SetActive(true);
+        AudioManager.Instance.PlayAmbianceMusic();
         audioSource.Stop();
         isCinematicActive = false;
         //Playere update!!!
