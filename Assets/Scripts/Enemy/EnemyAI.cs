@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] Animator animator;
     public EnemyHealthBar enemyHealthBar;
 
     public float sightRange = 5f;
@@ -16,6 +17,8 @@ public class EnemyAI : MonoBehaviour
     public float maxHealth = 3f;
 
     bool isCooldown;
+
+    bool isRunning, isAttacking;
 
     public AIPath aiPath;
 
@@ -39,22 +42,37 @@ public class EnemyAI : MonoBehaviour
         if (!CheckPlayerInMoveRange())
         {
             aiPath.enabled = false;
+            isAttacking = false;
+            isRunning = false;
             return;
         }
         if (CheckPlayerInAttackRange() && !isCooldown)
         {
             isCooldown = true;
+            isAttacking = true;
             PlayerStats.Instance.TakeDamage(10);
             StartCoroutine(EndCooldown());
         }
+
         aiPath.enabled = true;
+        if(!isAttacking)
+            isRunning = true;
+
         if(aiPath.desiredVelocity.x >= 0.01f) transform.localScale = new Vector3(-1f, 1f, 1f);
         else if(aiPath.desiredVelocity.x <= -0.01f) transform.localScale = new Vector3(1f, 1f, 1f);
+
+        UpdateAnimations();
     }
 
     public virtual IEnumerator EndCooldown()
     {
         yield return new WaitForSeconds(attackCooldown);
         isCooldown = false;
+    }
+
+    public void UpdateAnimations()
+    {
+        animator.SetBool("Running", isRunning);
+        animator.SetBool("Attacking", isAttacking);
     }
 }
