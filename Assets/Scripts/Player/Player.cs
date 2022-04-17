@@ -18,12 +18,11 @@ public class Player : MonoBehaviour
     [SerializeField] Transform feet;
     [SerializeField] PlayerAttack playerAttack;
 
-    float horizontal=0,vertical=0;
-    bool start = true;
+    float horizontal,vertical;
 
     [SerializeField] LayerMask groundLayer;
 
-    bool isGrounded, isBlocked, jumpRequest, isJumping, isRunning,isAttacking,isLanding;
+    bool isGrounded, isBlocked,isJumping, isRunning,isAttacking,_jump;
     bool isJumpingAnimated,isJumpingFallAnimated;
 
     private void Awake() => Instance = this;
@@ -39,12 +38,12 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        if (start) return;
         CheckPosition();
         CheckAttack();
         CheckJumping();
         CheckInteraction();
         UpdateAnimations();
+        //Move();
     }
 
     private void CheckAttack()
@@ -62,6 +61,12 @@ public class Player : MonoBehaviour
     }
 
     public void ResetAttack() => isAttacking = false;
+
+    private void CheckJumping()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping && isGrounded && !isBlocked && !_jump && !isAttacking)
+            _jump = true;
+    }
 
     private void CheckInteraction()
     {
@@ -101,28 +106,24 @@ public class Player : MonoBehaviour
             isGrounded = false;
     }
 
-    private void CheckJumping()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping && isGrounded && !isBlocked)
-            jumpRequest = true;
-        if(isJumping && !isLanding && rigidbody.velocity.y < 0)
-        {
-             isJumping = false;
-             isLanding = true;
-        }
-    }
-
     public void Move()
     {
-        if(jumpRequest && !isAttacking)
+        if (isAttacking)
         {
+            isJumping = false;
+            isRunning = false;
+            return;
+        }
+
+        if(_jump)
+        {
+            _jump = false;
             isJumping = true;
             isJumpingAnimated = false;
             rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
         }
-        jumpRequest=false;
 
-        if ((airControl || isGrounded || !isJumping) && !isAttacking)
+        if(airControl || isGrounded || !isJumping)
         {
             if (horizontal > 0)
             {
@@ -134,16 +135,14 @@ public class Player : MonoBehaviour
             {
                 rigidbody.velocity = new Vector2(-runSpeed, rigidbody.velocity.y);
                 transform.localScale = new Vector3(-1, 1, 1);
-                isRunning = true;
+                isRunning=true;
             }
-            else if (horizontal == 0)
+            else if (horizontal == 0 && rigidbody.velocity.x == 0)
             {
-                rigidbody.velocity = new Vector2(0f, rigidbody.velocity.y);
+                rigidbody.velocity = Vector2.zero;
                 isRunning = false;
             }
         }
-        else
-            isRunning = false;
     }
 
     private void UpdateAnimations()
