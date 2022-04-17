@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
         skill2Cooldown = true;
         Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, attackRange, LayerMask.GetMask("Enemy"));
         if (!hitCollider) return;
-        currentSkillVFXTransform = Instantiate(slash2.transform, hitCollider.gameObject.transform.position, slash2.transform.rotation);
+        currentSkillVFXTransform = Instantiate(slash2.transform, hitCollider.gameObject.transform.GetChild(1).position, slash2.transform.rotation);
         currentSkillVFXTransform.gameObject.SetActive(true);
         hitCollider.gameObject.GetComponent<EnemyAI>().TakeDamage(PlayerStats.Instance.attackDamage);
         PlayerAudioManager.Instance.PlayAttackVFX();
