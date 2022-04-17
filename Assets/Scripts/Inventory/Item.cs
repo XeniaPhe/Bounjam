@@ -20,10 +20,13 @@ namespace Inventory
         [SerializeField] protected Sprite icon;
         public Sprite Icon { get => icon; }
 
+        [SerializeField] Color barColor;
+        public Color BarColor { get => barColor; }
+
+        [SerializeField] Color textColor;
+        public Color TextColor { get => textColor; }
+
+        public bool isAcquired = false;
         #endregion
-        public virtual void Use()
-        {
-            Debug.Log("Item used!");
-        }
     }
 }
