@@ -25,6 +25,7 @@ public class PlayerAttack : MonoBehaviour
         currentSkillVFXTransform = Instantiate(slash1.transform, enemyGameObject.transform.position, slash1.transform.rotation);
         currentSkillVFXTransform.gameObject.SetActive(true);
         enemyGameObject.GetComponent<EnemyAI>().TakeDamage(PlayerStats.Instance.attackDamage);
+        PlayerAudioManager.Instance.PlayAttackVFX();
         StartCoroutine(EndSkill1Cooldown());
     }
 
@@ -37,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
         currentSkillVFXTransform = Instantiate(slash1.transform, hitCollider.gameObject.transform.position, slash1.transform.rotation);
         currentSkillVFXTransform.gameObject.SetActive(true);
         hitCollider.gameObject.GetComponent<EnemyAI>().TakeDamage(PlayerStats.Instance.attackDamage);
+        PlayerAudioManager.Instance.PlayAttackVFX();
         StartCoroutine(EndSkill2Cooldown());
     }
 
