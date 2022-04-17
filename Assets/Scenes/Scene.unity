@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8662632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,12 +152,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8662631}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a2cee876dc234e5681fcf3f8901db71, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b04cee798baf426194078e6f205a3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackLevelText: {fileID: 173450922}
-  healthLevelText: {fileID: 0}
-  speedLevelText: {fileID: 0}
 --- !u!114 &8662633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,11 +552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4314592290045513842, guid: baf8abacef080a54687653ee61582d8f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreaseAttack
+      value: OnNo
       objectReference: {fileID: 0}
     - target: {fileID: 4314592290045513842, guid: baf8abacef080a54687653ee61582d8f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UpgradePlayer, Assembly-CSharp
+      value: ContinuePlaying, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4314592290045513842, guid: baf8abacef080a54687653ee61582d8f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1815,6 +1812,7 @@ GameObject:
   - component: {fileID: 391396713}
   - component: {fileID: 391396714}
   - component: {fileID: 391396716}
+  - component: {fileID: 391396717}
   - component: {fileID: 391396715}
   m_Layer: 3
   m_Name: Player
@@ -1974,7 +1972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDamage: 1
-  health: 100
+  health: 1
   healthRegenerationCooldown: 0.2
   maxHealth: 100
   trebleClef: 0
@@ -1982,6 +1980,7 @@ MonoBehaviour:
   playerHealthBar: {fileID: 1830713472}
   playerTrebleClef: {fileID: 873186580}
   upgradePlayer: {fileID: 547238181}
+  continuePlaying: {fileID: 8662632}
 --- !u!114 &391396714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,6 +2112,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4425b3908f72e41c4be7226722ee0615, type: 3}
   - {fileID: 8300000, guid: 23b0e4b3792074d689f86ac576de914c, type: 3}
   - {fileID: 8300000, guid: 51036018c8bc64ff89beedf3465570bd, type: 3}
+--- !u!114 &391396717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391396707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e3502a772ca437392a8719675dba4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastStatue: {fileID: 0}
 --- !u!1 &411637838
 GameObject:
   m_ObjectHideFlags: 0
@@ -3845,11 +3857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4314592290045513842, guid: baf8abacef080a54687653ee61582d8f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: IncreaseAttack
+      value: OnYes
       objectReference: {fileID: 0}
     - target: {fileID: 4314592290045513842, guid: baf8abacef080a54687653ee61582d8f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UpgradePlayer, Assembly-CSharp
+      value: ContinuePlaying, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4314592290045513842, guid: baf8abacef080a54687653ee61582d8f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

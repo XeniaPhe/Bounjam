@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public PlayerHealthBar playerHealthBar;
     public TrebleClef playerTrebleClef;
     public UpgradePlayer upgradePlayer;
+    public ContinuePlaying continuePlaying;
 
     private void Awake() => Instance = this;
 
@@ -65,7 +66,20 @@ public class PlayerStats : MonoBehaviour
         playerHealthBar.OnHealthBarChange();
     }
 
-    public void Die() => Destroy(gameObject);
+    public void Die()
+    {
+        gameObject.SetActive(false);
+        continuePlaying.gameObject.SetActive(true);
+        playerHealthBar.OnHealthBarChange();
+    }
+
+    public void Rebirth()
+    {
+        health = maxHealth;
+        gameObject.SetActive(true);
+        continuePlaying.gameObject.SetActive(false);
+        playerHealthBar.OnHealthBarChange();
+    }
 
     public IEnumerator Regeneration()
     {
