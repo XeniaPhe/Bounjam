@@ -28,13 +28,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        if (StartCinematic.isCinematicActive) return;
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        if (StartCinematic.isCinematicActive) return;
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
