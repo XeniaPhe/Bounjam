@@ -34,6 +34,8 @@ namespace Inventory
 
             isStarted = true;
         }
+
+
         public bool UpdateItem(Item newItem)
         {
             if (newItem == null)

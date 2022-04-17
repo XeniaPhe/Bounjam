@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 namespace Inventory
@@ -11,6 +12,7 @@ namespace Inventory
         [SerializeField] GameObject sampleBar;
         [SerializeField] Transform barParent;
 
+        [SerializeField] GameObject bg;
         List<TrackMenuBar> bars;
 
         private void Awake()
@@ -26,20 +28,20 @@ namespace Inventory
 
         private void Start()
         {
-            ItemTracker.Instance.Start();
             FetchBars();
+            Toggle();
         }
 
-        public void Open()
+        private void Update()
         {
-            gameObject.SetActive(true);
-            if (bars.Count != ItemTracker.Instance.requiredItems.Count)
-                FetchBars();
+            if (Input.GetKeyDown(KeyCode.I))
+                Toggle();
         }
 
-        public void Close()
+        private void Toggle()
         {
-            gameObject.SetActive(false);
+            bg.SetActive(!bg.activeSelf);
+            ItemDetailsMenu.Instance.Unload();
         }
 
         void FetchBars()
