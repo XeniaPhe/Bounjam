@@ -7,10 +7,10 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats Instance;
 
     [Header("Stats")]
-    public int attackDamage = 1;
-    public int health = 25;
+    public float attackDamage = 1;
+    public float health = 25;
     public float healthRegenerationCooldown = 0.5f;
-    public int maxHealth = 100;
+    public float maxHealth = 100;
     public int trebleClef = 0;
     public float speed = 1;
     [Header("UI")]
@@ -30,7 +30,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (trebleClef < 2) return;
         DecreaseTrebleClef(2);
-        attackDamage += 1;
+        attackDamage += 0.1f;
     }
 
     public void IncreaseHealth()
@@ -59,7 +59,7 @@ public class PlayerStats : MonoBehaviour
         playerTrebleClef.OnTrebleClefChange();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if ((health -= damage) <= 0) Die();
         playerHealthBar.OnHealthBarChange();

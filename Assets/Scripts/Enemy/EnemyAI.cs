@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public EnemyHealthBar enemyHealthBar;
+
     public float sightRange = 5f;
     public float attackRange = 2f;
 
     public float attackCooldown = 1f;
+
+    public float health = 3f;
+    public float maxHealth = 3f;
 
     bool isCooldown;
 
@@ -17,6 +22,17 @@ public class EnemyAI : MonoBehaviour
     public bool CheckPlayerInMoveRange() => Physics2D.OverlapCircle(transform.position, sightRange, LayerMask.GetMask("Player")) ? true : false;
 
     public bool CheckPlayerInAttackRange() => Physics2D.OverlapCircle(transform.position, attackRange, LayerMask.GetMask("Player")) ? true : false;
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        enemyHealthBar.OnHealthBarChange();
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            Destroy(enemyHealthBar.transform.parent.gameObject);
+        }
+    }
 
     private void Update()
     {

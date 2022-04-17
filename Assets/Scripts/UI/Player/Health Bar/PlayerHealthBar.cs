@@ -8,7 +8,7 @@ public class PlayerHealthBar : MonoBehaviour
     public UnityEngine.UI.Slider slider;
     public GameObject sliderComponents;
 
-    public void OnHealthBarChange() => sliderComponents.SetActive((slider.value = PlayerStats.Instance.health / (float)PlayerStats.Instance.maxHealth) < 1 ? true : false);
+    public void OnHealthBarChange() => sliderComponents.SetActive((slider.value = PlayerStats.Instance.health / PlayerStats.Instance.maxHealth) < 1 ? true : false);
 
     private void Update() => transform.parent.parent.position = player.transform.position;
 }
