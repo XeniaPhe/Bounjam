@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BossTrigger : MonoBehaviour
 {
-
     bool isCooldown;
 
     public void OnTriggerEnter2D(Collider2D collision)
