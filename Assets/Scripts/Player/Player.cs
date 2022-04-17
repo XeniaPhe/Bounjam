@@ -134,6 +134,8 @@ public class Player : MonoBehaviour
     {
         if (!animator) return;
 
+        if(isAttacking)
+
         if (isJumping && !isJumpingAnimated)
         {
             animator.SetBool("Jumping", true);
