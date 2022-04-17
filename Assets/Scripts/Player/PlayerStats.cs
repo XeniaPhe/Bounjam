@@ -44,7 +44,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (trebleClef < 1) return;
         DecreaseTrebleClef(1);
-        speed += 1;
+        speed += 0.01f;
     }
 
     public void IncreaseTrebleClef()
