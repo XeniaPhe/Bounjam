@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] LayerMask groundLayer;
 
-    bool isGrounded, isBlocked,isJumping, isRunning,_jump;
+    bool isGrounded, isBlocked,isJumping, isRunning,isAttacking,_jump;
     bool isJumpingAnimated,isJumpingFallAnimated;
 
     private void Awake() => Instance = this;
@@ -47,8 +47,16 @@ public class Player : MonoBehaviour
 
     private void CheckAttack()
     {
-        if (Input.GetKeyDown(KeyCode.Q)) playerAttack.SkillAttack1();
-        if (Input.GetKeyDown(KeyCode.W)) playerAttack.SkillAttack2();
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            playerAttack.SkillAttack1();
+            isAttacking = true;
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            playerAttack.SkillAttack2();
+            isAttacking = true;
+        }
     }
 
     private void CheckJumping()
