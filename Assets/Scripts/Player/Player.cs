@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (StartCinematic.isCinematicActive) return;
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -135,7 +134,7 @@ public class Player : MonoBehaviour
                 if (!isJumping && !isLanding)
                     isRunning = true;
             }
-            else if (horizontal == 0 && rigidbody.velocity.x == 0)
+            else if (horizontal == 0)
             {
                 rigidbody.velocity = new Vector2(0f, rigidbody.velocity.y);
                 isRunning = false;
@@ -162,6 +161,11 @@ public class Player : MonoBehaviour
         else if (isLanding)
         {
             animator.SetBool("Landing", true);
+            animator.SetBool("Jumping", false);
+        }
+        else
+        {
+            animator.SetBool("Landing", false);
             animator.SetBool("Jumping", false);
         }
 
