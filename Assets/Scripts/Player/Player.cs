@@ -22,8 +22,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] LayerMask groundLayer;
 
-    bool isGrounded, isBlocked,isJumping, isRunning,isAttacking,_jump;
-    bool isJumpingAnimated,isJumpingFallAnimated;
+    bool isGrounded, isBlocked, jumpRequest, isJumping, isRunning,isAttacking,isLanding;
 
     private void Awake() => Instance = this;
 
@@ -43,7 +42,6 @@ public class Player : MonoBehaviour
         CheckJumping();
         CheckInteraction();
         UpdateAnimations();
-        //Move();
     }
 
     private void CheckAttack()
@@ -64,8 +62,14 @@ public class Player : MonoBehaviour
 
     private void CheckJumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping && isGrounded && !isBlocked && !_jump && !isAttacking)
-            _jump = true;
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping && isGrounded && !isBlocked)
+            jumpRequest = true;
+
+        if(isJumping && !isLanding && rigidbody.velocity.y<0)
+        {
+            isJumping = false;
+            isLanding = true;
+        }
     }
 
     private void CheckInteraction()
@@ -90,10 +94,7 @@ public class Player : MonoBehaviour
     public void CheckPosition()
     {
         if (Physics2D.OverlapCircle(head.position, checkRadius, groundLayer.value))
-        {
             isBlocked = true;
-            isJumping = false;
-        }
         else
             isBlocked = false;
 
@@ -101,6 +102,7 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
             isJumping = false;
+            isLanding = false;
         }
         else
             isGrounded = false;
@@ -108,40 +110,40 @@ public class Player : MonoBehaviour
 
     public void Move()
     {
-        if (isAttacking)
+        if(jumpRequest && !isAttacking)
         {
-            isJumping = false;
-            isRunning = false;
-            return;
-        }
-
-        if(_jump)
-        {
-            _jump = false;
             isJumping = true;
-            isJumpingAnimated = false;
+            isLanding=false;
             rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
         }
+        jumpRequest = false;
 
-        if(airControl || isGrounded || !isJumping)
+        if ((airControl || isGrounded) && !isAttacking)
         {
             if (horizontal > 0)
             {
                 rigidbody.velocity = new Vector2(runSpeed, rigidbody.velocity.y);
                 transform.localScale = new Vector3(1, 1, 1);
-                isRunning = true;
+                if(!isJumping && !isLanding)
+                    isRunning = true;
             }
             else if (horizontal < 0)
             {
                 rigidbody.velocity = new Vector2(-runSpeed, rigidbody.velocity.y);
                 transform.localScale = new Vector3(-1, 1, 1);
-                isRunning=true;
+                if (!isJumping && !isLanding)
+                    isRunning = true;
             }
             else if (horizontal == 0 && rigidbody.velocity.x == 0)
             {
-                rigidbody.velocity = Vector2.zero;
+                rigidbody.velocity = new Vector2(0f, rigidbody.velocity.y);
                 isRunning = false;
             }
+        }
+        else
+        {
+            rigidbody.velocity = new Vector2(0f, rigidbody.velocity.y);
+            isRunning = false;
         }
     }
 
@@ -154,23 +156,15 @@ public class Player : MonoBehaviour
         else
             animator.SetBool("Attacking", false);
 
-        if (isJumping && !isJumpingAnimated)
-        {
+        if (isJumping)
             animator.SetBool("Jumping", true);
-            isJumpingAnimated = true;
-        }
-        else if (isJumping && isJumpingAnimated && !isJumpingFallAnimated && rigidbody.velocity.y < 0)
+        else if (isLanding)
         {
-            animator.SetBool("JumpingFall", true);
-            isJumpingFallAnimated = true;
-        }
-        else if(isJumpingAnimated && isJumpingFallAnimated && !isJumping && isGrounded)
-        {
+            animator.SetBool("Landing", true);
             animator.SetBool("Jumping", false);
-            animator.SetBool("JumpingFall", false);
         }
 
-        if (!isJumping && isGrounded && isRunning)
+        if (isRunning)
             animator.SetBool("Running", true);
         else
             animator.SetBool("Running", false);
