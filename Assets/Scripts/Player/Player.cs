@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         CheckJumping();
         CheckInteraction();
         UpdateAnimations();
+        //Move();
     }
 
     private void CheckAttack()
@@ -59,9 +60,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void ResetAttack() => isAttacking = false;
+
     private void CheckJumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping && isGrounded && !isBlocked && !_jump)
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping && isGrounded && !isBlocked && !_jump && !isAttacking)
             _jump = true;
     }
 
@@ -93,6 +96,7 @@ public class Player : MonoBehaviour
         }
         else
             isBlocked = false;
+
         if (Physics2D.OverlapCircle(feet.position, checkRadius, groundLayer.value))
         {
             isGrounded = true;
@@ -104,6 +108,13 @@ public class Player : MonoBehaviour
 
     public void Move()
     {
+        if (isAttacking)
+        {
+            isJumping = false;
+            isRunning = false;
+            return;
+        }
+
         if(_jump)
         {
             _jump = false;
@@ -112,21 +123,25 @@ public class Player : MonoBehaviour
             rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
         }
 
-        isRunning = true;
         if(airControl || isGrounded || !isJumping)
         {
             if (horizontal > 0)
             {
                 rigidbody.velocity = new Vector2(runSpeed, rigidbody.velocity.y);
                 transform.localScale = new Vector3(1, 1, 1);
+                isRunning = true;
             }
             else if (horizontal < 0)
             {
                 rigidbody.velocity = new Vector2(-runSpeed, rigidbody.velocity.y);
                 transform.localScale = new Vector3(-1, 1, 1);
+                isRunning=true;
             }
             else if (horizontal == 0 && rigidbody.velocity.x == 0)
+            {
+                rigidbody.velocity = Vector2.zero;
                 isRunning = false;
+            }
         }
     }
 
@@ -134,7 +149,10 @@ public class Player : MonoBehaviour
     {
         if (!animator) return;
 
-        if(isAttacking)
+        if (isAttacking)
+            animator.SetBool("Attacking", true);
+        else
+            animator.SetBool("Attacking", false);
 
         if (isJumping && !isJumpingAnimated)
         {
