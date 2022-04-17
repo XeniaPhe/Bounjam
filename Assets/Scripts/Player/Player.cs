@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        if (StartCinematic.isCinematicActive) return;
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -134,7 +135,7 @@ public class Player : MonoBehaviour
                 if (!isJumping && !isLanding)
                     isRunning = true;
             }
-            else if (horizontal == 0)
+            else if (horizontal == 0 && rigidbody.velocity.x == 0)
             {
                 rigidbody.velocity = new Vector2(0f, rigidbody.velocity.y);
                 isRunning = false;

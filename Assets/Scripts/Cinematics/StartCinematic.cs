@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StartCinematic : MonoBehaviour
 {
-    bool isCinematicActive = true;
+    public static bool isCinematicActive = true;
 
     public AudioSource audioSource;
 
