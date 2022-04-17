@@ -10,6 +10,7 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(1);  //Next scene
     }
     public void Quit()
+
     {
         Application.Quit();
     }
