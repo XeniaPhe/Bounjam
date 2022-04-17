@@ -23,7 +23,7 @@ public class EnemyAI : MonoBehaviour
 
     public bool CheckPlayerInAttackRange() => Physics2D.OverlapCircle(transform.position, attackRange, LayerMask.GetMask("Player")) ? true : false;
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         health -= damage;
         enemyHealthBar.OnHealthBarChange();
@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (!CheckPlayerInMoveRange())
         {
@@ -52,7 +52,7 @@ public class EnemyAI : MonoBehaviour
         else if(aiPath.desiredVelocity.x <= -0.01f) transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
-    private IEnumerator EndCooldown()
+    public virtual IEnumerator EndCooldown()
     {
         yield return new WaitForSeconds(attackCooldown);
         isCooldown = false;
