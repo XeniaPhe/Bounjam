@@ -29,7 +29,7 @@ public class EnemyAI : MonoBehaviour
         enemyHealthBar.OnHealthBarChange();
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
             Destroy(enemyHealthBar.transform.parent.gameObject);
         }
     }
