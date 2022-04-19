@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] float runSpeed;
     [SerializeField] float jumpForce;
+    [SerializeField] float exertForceAfter = 0.2f;
     [SerializeField] bool airControl = true;
     [SerializeField] Transform head;
     [SerializeField] float checkRadius = 0.05f;
@@ -43,7 +44,6 @@ public class Player : MonoBehaviour
         CheckAttack();
         CheckJumping();
         CheckInteraction();
-        UpdateAnimations();
     }
 
     private void CheckAttack()
@@ -108,7 +108,11 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!(StartCinematic.isCinematicActive || EndCinematic.isCinematicActive)) Move();
+        if (!(StartCinematic.isCinematicActive || EndCinematic.isCinematicActive))
+        {
+            Move();
+            UpdateAnimations();
+        }
         else rigidbody.velocity = new Vector2(0f, 0f);
     }
 
@@ -129,13 +133,16 @@ public class Player : MonoBehaviour
             isGrounded = false;
     }
 
+    void ExertForce() => rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
+
     public void Move()
     {
         if (jumpRequest && !isAttacking)
         {
             isJumping = true;
+            isRunning = false;
             isLanding = false;
-            rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Force);
+            Invoke("ExertForce", exertForceAfter);
         }
         jumpRequest = false;
 
