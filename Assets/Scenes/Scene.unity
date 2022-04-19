@@ -1521,10 +1521,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndGame
       objectReference: {fileID: 0}
-    - target: {fileID: 5314629811025825690, guid: 6df09c5541d69ae4bab6536ee6174bd4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6df09c5541d69ae4bab6536ee6174bd4, type: 3}
 --- !u!224 &1847385992 stripped
@@ -1608,14 +1604,6 @@ PrefabInstance:
       propertyPath: playerTrebleClef
       value: 
       objectReference: {fileID: 873186580}
-    - target: {fileID: 4379895812999784480, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4496387471491346839, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
 --- !u!1001 &1696391254202660479
@@ -2741,18 +2729,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5583179364472552691, guid: 7a0b3a1a3d3d04a1ea179e5cfb701334, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5583179364472552693, guid: 7a0b3a1a3d3d04a1ea179e5cfb701334, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420032}
-    - target: {fileID: 5583179364472552693, guid: 7a0b3a1a3d3d04a1ea179e5cfb701334, type: 3}
-      propertyPath: startCinematicEndTime
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 5583179366137150731, guid: 7a0b3a1a3d3d04a1ea179e5cfb701334, type: 3}
       propertyPath: mainCamera
       value: 
