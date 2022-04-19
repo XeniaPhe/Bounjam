@@ -10,6 +10,7 @@ namespace LootTrack
 
         [SerializeField] GameObject sampleBar;
         [SerializeField] Transform barParent;
+        [SerializeField] GameObject background;
 
         List<TrackMenuBar> bars;
 
@@ -28,18 +29,24 @@ namespace LootTrack
         {
             ItemTracker.Instance.Start();
             FetchBars();
+            Toggle();
         }
 
-        public void Open()
+        private void Update()
         {
-            gameObject.SetActive(true);
-            if (bars.Count != ItemTracker.Instance.requiredItems.Count)
-                FetchBars();
+            if(Input.GetKeyUp(KeyCode.I))
+                Toggle();
         }
 
-        public void Close()
+        private void Toggle()
         {
-            gameObject.SetActive(false);
+            if(background.gameObject.activeSelf)
+            {
+                background.gameObject.SetActive(false);
+                ItemDetailsMenu.Instance.Unload();
+            }
+            else
+                background.gameObject.SetActive(true);
         }
 
         void FetchBars()

@@ -86,13 +86,13 @@ public class Player : MonoBehaviour
         if ((coll = Physics2D.OverlapCircle(transform.position, 2f, rewardMask)))
         {
             Reward reward;
-            if(coll.gameObject.TryGetComponent(out reward))
+            if(coll.gameObject.TryGetComponent<Reward>(out reward))
                 reward.GetReward();
         }
         if((coll = Physics2D.OverlapCircle(transform.position,2f,instrumentMask)))
         {
             ItemWrapper instrument;
-            if (coll.gameObject.TryGetComponent(out instrument))
+            if (coll.gameObject.TryGetComponent<ItemWrapper>(out instrument))
             {
                 ItemTracker.Instance.UpdateItem(instrument.Item);
                 Destroy(instrument.gameObject);
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         if ((coll = Physics2D.OverlapCircle(transform.position, 2f, statueMask)))
         {
             Statue statue;
-            if (coll.gameObject.TryGetComponent(out statue))
+            if (coll.gameObject.TryGetComponent<Statue>(out statue))
                 statue.OpenUpgradePanel();
         }
     }
