@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LootTrack;
 
 public class Player : MonoBehaviour
 {
@@ -90,9 +91,12 @@ public class Player : MonoBehaviour
         }
         if((coll = Physics2D.OverlapCircle(transform.position,2f,instrumentMask)))
         {
-            LootTrack.ItemWrapper instrument;
+            ItemWrapper instrument;
             if (coll.gameObject.TryGetComponent(out instrument))
-                LootTrack.ItemTracker.Instance.UpdateItem(instrument.Item);
+            {
+                ItemTracker.Instance.UpdateItem(instrument.Item);
+                Destroy(instrument.gameObject);
+            }
         }
         if ((coll = Physics2D.OverlapCircle(transform.position, 2f, statueMask)))
         {
