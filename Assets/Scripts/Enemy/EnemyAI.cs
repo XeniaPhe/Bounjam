@@ -15,16 +15,15 @@ public class EnemyAI : MonoBehaviour
 
     public float health = 3f;
     public float maxHealth = 3f;
+    public float moveSpeed = 3f;
 
-    bool isCooldown;
-
-    bool isRunning, isAttacking;
-
-    public AIPath aiPath;
+    bool isCooldown, isRunning, isAttacking;
 
     public bool CheckPlayerInMoveRange() => Physics2D.OverlapCircle(transform.position, sightRange, LayerMask.GetMask("Player")) ? true : false;
 
     public bool CheckPlayerInAttackRange() => Physics2D.OverlapCircle(transform.position, attackRange, LayerMask.GetMask("Player")) ? true : false;
+
+    public void MoveTowardsPlayer() => transform.position = Vector2.MoveTowards(transform.position, Player.Instance.transform.position, moveSpeed * Time.deltaTime);
 
     public virtual void TakeDamage(float damage)
     {
@@ -41,25 +40,24 @@ public class EnemyAI : MonoBehaviour
     {
         if (!CheckPlayerInMoveRange())
         {
-            aiPath.enabled = false;
+            Debug.Log("ajshdasdsahjdajsd213123123123");
             isAttacking = false;
             isRunning = false;
             return;
         }
-        if (CheckPlayerInAttackRange() && !isCooldown)
+        else if (CheckPlayerInAttackRange())
         {
+            Debug.Log("ajshdasdsahjdajsd1");
+            if (!isCooldown) return;
             isCooldown = true;
             isAttacking = true;
             PlayerStats.Instance.TakeDamage(10);
             StartCoroutine(EndCooldown());
         }
+        else Debug.Log("sdasdasdsad");
 
-        aiPath.enabled = true;
         if(!isAttacking)
             isRunning = true;
-
-        if(aiPath.desiredVelocity.x >= 0.01f) transform.localScale = new Vector3(-1f, 1f, 1f);
-        else if(aiPath.desiredVelocity.x <= -0.01f) transform.localScale = new Vector3(1f, 1f, 1f);
 
         UpdateAnimations();
     }
