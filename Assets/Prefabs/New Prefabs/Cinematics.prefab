@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 5583179364472552694}
   mainCamera: {fileID: 0}
-  startCinematicEndTime: 3
+  startCinematicEndTime: 0.1
   speed: 0.005
 --- !u!82 &5583179364472552694
 AudioSource:

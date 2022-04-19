@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LootTrack;
 
 public class Player : MonoBehaviour
 {
@@ -85,19 +86,22 @@ public class Player : MonoBehaviour
         if ((coll = Physics2D.OverlapCircle(transform.position, 2f, rewardMask)))
         {
             Reward reward;
-            if(coll.gameObject.TryGetComponent(out reward))
+            if(coll.gameObject.TryGetComponent<Reward>(out reward))
                 reward.GetReward();
         }
         if((coll = Physics2D.OverlapCircle(transform.position,2f,instrumentMask)))
         {
-            LootTrack.ItemWrapper instrument;
-            if (coll.gameObject.TryGetComponent(out instrument))
-                LootTrack.ItemTracker.Instance.UpdateItem(instrument.Item);
+            ItemWrapper instrument;
+            if (coll.gameObject.TryGetComponent<ItemWrapper>(out instrument))
+            {
+                ItemTracker.Instance.UpdateItem(instrument.Item);
+                Destroy(instrument.gameObject);
+            }
         }
         if ((coll = Physics2D.OverlapCircle(transform.position, 2f, statueMask)))
         {
             Statue statue;
-            if (coll.gameObject.TryGetComponent(out statue))
+            if (coll.gameObject.TryGetComponent<Statue>(out statue))
                 statue.OpenUpgradePanel();
         }
     }

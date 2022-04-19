@@ -22,10 +22,12 @@ public class CreditsLoader : MonoBehaviour
         oneOverFps = new WaitForSeconds(1f / creditsFps);
         waitNewName = new WaitForSeconds(timeBetweenNames);
         delta = 1f / fadeFrameCount;
+        gameObject.SetActive(false);
     }
 
     public void EndGame()
     {
+        gameObject.SetActive(true);
         fader.gameObject.SetActive(true);
         fader.alpha = 0f;
         foreach (var item in texts)

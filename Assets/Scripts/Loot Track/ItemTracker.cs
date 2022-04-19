@@ -29,7 +29,7 @@ namespace LootTrack
 
             foreach (var item in requiredItems)
             {
-                item.isAcquired = true;
+                item.isAcquired = false;
             }
 
             isStarted = true;

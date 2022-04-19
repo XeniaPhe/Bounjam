@@ -196,6 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sampleBar: {fileID: 3927085599202934161, guid: a879f6f2cb357d94785499d73021b160, type: 3}
   barParent: {fileID: 3372909450943378323}
+  background: {fileID: 3372909449284651320}
 --- !u!114 &3372909449808061709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,12 +210,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requiredItems:
-  - {fileID: 11400000, guid: 283a845e2b828ef4695b72557a42d1ec, type: 2}
-  - {fileID: 11400000, guid: a18086a8116d25f4cbf45986e27e0630, type: 2}
-  - {fileID: 11400000, guid: a18086a8116d25f4cbf45986e27e0630, type: 2}
-  - {fileID: 11400000, guid: a18086a8116d25f4cbf45986e27e0630, type: 2}
-  - {fileID: 11400000, guid: a18086a8116d25f4cbf45986e27e0630, type: 2}
-  - {fileID: 11400000, guid: a18086a8116d25f4cbf45986e27e0630, type: 2}
+  - {fileID: 11400000, guid: e45438fdffae0438898bc9004149f1bb, type: 2}
+  - {fileID: 11400000, guid: a1920f3271e5b4d479098d377592a1ad, type: 2}
+  - {fileID: 11400000, guid: e97592e480d0f48cbae3006bde1200c0, type: 2}
+  - {fileID: 11400000, guid: df50b649de7be49fe9cae1a92c06bd4e, type: 2}
   - {fileID: 11400000, guid: a18086a8116d25f4cbf45986e27e0630, type: 2}
 --- !u!1 &3372909450849663211
 GameObject:
