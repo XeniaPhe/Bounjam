@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
+using LootTrack;
 
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] Animator animator;
+    [SerializeField] ItemWrapper item;
     public EnemyHealthBar enemyHealthBar;
 
     public float sightRange = 5f;
@@ -31,6 +33,8 @@ public class EnemyAI : MonoBehaviour
         enemyHealthBar.OnHealthBarChange();
         if (health <= 0)
         {
+            Vector3 itemPos = new Vector3(transform.position.x + Random.Range(-2f, 2f), Player.Instance.transform.position.y - 1f, 0);
+            Instantiate(item, itemPos, Quaternion.identity);
             Destroy(transform.parent.gameObject);
             Destroy(enemyHealthBar.transform.parent.gameObject);
         }
