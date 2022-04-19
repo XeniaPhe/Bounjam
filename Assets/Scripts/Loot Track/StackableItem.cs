@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Inventory
+namespace LootTrack
 {
     [CreateAssetMenu(menuName ="Inventory/Stackable Item",fileName ="New Item",order =0)]
     public class StackableItem : Item

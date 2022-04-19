@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Inventory
+namespace LootTrack
 {
     [CreateAssetMenu(fileName ="New Item",menuName ="Inventory/Item",order =0)]
     public class Item : ScriptableObject

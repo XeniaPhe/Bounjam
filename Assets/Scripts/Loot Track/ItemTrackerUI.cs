@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Inventory
+namespace LootTrack
 {
     public class ItemTrackerUI : MonoBehaviour
     {

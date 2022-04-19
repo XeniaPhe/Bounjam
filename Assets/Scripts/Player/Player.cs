@@ -75,19 +75,31 @@ public class Player : MonoBehaviour
 
     private void CheckInteraction()
     {
-        bool isReward = false, isStatue = false;
-        if (!Input.GetKeyDown(KeyCode.E)) return;
-        Collider2D hitCollider = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Reward"));
-        if (hitCollider) isReward = true;
-        if (!isReward) hitCollider = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Statue"));
-        if (hitCollider && !isReward) isStatue = true;
-        if (!(isStatue || isReward)) return;
-        Reward reward = null;
-        Statue statue = null;
-        if (isReward) hitCollider.gameObject.TryGetComponent(out reward);
-        if (reward != null) reward.GetReward();
-        if (isStatue) hitCollider.gameObject.TryGetComponent(out statue);
-        if (statue != null) statue.OpenUpgradePanel();
+        if(!Input.GetKeyDown(KeyCode.E)) return;
+
+        LayerMask rewardMask = LayerMask.GetMask("Reward");
+        LayerMask statueMask = LayerMask.GetMask("Statue");
+        LayerMask instrumentMask = LayerMask.GetMask("Instrument");
+        Collider2D coll;
+
+        if ((coll = Physics2D.OverlapCircle(transform.position, 2f, rewardMask)))
+        {
+            Reward reward;
+            if(coll.gameObject.TryGetComponent(out reward))
+                reward.GetReward();
+        }
+        else if ((coll = Physics2D.OverlapCircle(transform.position, 2f, statueMask)))
+        {
+            Statue statue;
+            if (coll.gameObject.TryGetComponent(out statue))
+                statue.OpenUpgradePanel();
+        }
+        else if((coll = Physics2D.OverlapCircle(transform.position,2f,instrumentMask)))
+        {
+            LootTrack.ItemWrapper instrument;
+            if (coll.gameObject.TryGetComponent(out instrument))
+                LootTrack.ItemTracker.Instance.UpdateItem(instrument.Item);
+        }
     }
 
     private void FixedUpdate()
