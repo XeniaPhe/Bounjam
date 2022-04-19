@@ -3218,6 +3218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  item: {fileID: 0}
   enemyHealthBar: {fileID: 1956213303370350417}
   sightRange: 5
   attackRange: 2
@@ -3324,6 +3325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  item: {fileID: 0}
   enemyHealthBar: {fileID: 7078782883341195755}
   sightRange: 5
   attackRange: 2

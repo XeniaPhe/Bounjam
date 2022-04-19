@@ -1080,6 +1080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  item: {fileID: 6038709146311874365, guid: 6831fef836ac8c34bb7c399f01c238fb, type: 3}
   enemyHealthBar: {fileID: 5548763804785317697}
   sightRange: 5
   attackRange: 2

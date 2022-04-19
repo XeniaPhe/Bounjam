@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (StartCinematic.isCinematicActive || EndCinematic.isCinematicActive) return;
+       // if (StartCinematic.isCinematicActive || EndCinematic.isCinematicActive) return;
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -88,17 +88,17 @@ public class Player : MonoBehaviour
             if(coll.gameObject.TryGetComponent(out reward))
                 reward.GetReward();
         }
-        else if ((coll = Physics2D.OverlapCircle(transform.position, 2f, statueMask)))
-        {
-            Statue statue;
-            if (coll.gameObject.TryGetComponent(out statue))
-                statue.OpenUpgradePanel();
-        }
-        else if((coll = Physics2D.OverlapCircle(transform.position,2f,instrumentMask)))
+        if((coll = Physics2D.OverlapCircle(transform.position,2f,instrumentMask)))
         {
             LootTrack.ItemWrapper instrument;
             if (coll.gameObject.TryGetComponent(out instrument))
                 LootTrack.ItemTracker.Instance.UpdateItem(instrument.Item);
+        }
+        if ((coll = Physics2D.OverlapCircle(transform.position, 2f, statueMask)))
+        {
+            Statue statue;
+            if (coll.gameObject.TryGetComponent(out statue))
+                statue.OpenUpgradePanel();
         }
     }
 
