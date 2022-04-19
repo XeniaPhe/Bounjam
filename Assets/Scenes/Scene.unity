@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 503634287}
   - component: {fileID: 503634288}
   - component: {fileID: 503634289}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1225,7 +1225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.13, y: -5.5399933, z: -40.387634}
+  m_LocalPosition: {x: -18.36, y: -5.760006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1394,7 +1394,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: fa46fff60c76941afb1a603f12006c01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1463,7 +1463,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8189807, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1725,6 +1725,14 @@ PrefabInstance:
       propertyPath: playerTrebleClef
       value: 
       objectReference: {fileID: 873186580}
+    - target: {fileID: 4379895812999784480, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4496387471491346839, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
+      propertyPath: m_Intensity
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
 --- !u!1001 &1696391254202660479
@@ -2850,10 +2858,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5583179364472552691, guid: 7a0b3a1a3d3d04a1ea179e5cfb701334, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5583179364472552693, guid: 7a0b3a1a3d3d04a1ea179e5cfb701334, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420032}
+    - target: {fileID: 5583179364472552693, guid: 7a0b3a1a3d3d04a1ea179e5cfb701334, type: 3}
+      propertyPath: startCinematicEndTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5583179366137150731, guid: 7a0b3a1a3d3d04a1ea179e5cfb701334, type: 3}
       propertyPath: mainCamera
       value: 
@@ -3006,7 +3022,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8726074085594161719}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.52999973, z: 30.467405}
+  m_LocalPosition: {x: 0, y: -0.94, z: 30.467405}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

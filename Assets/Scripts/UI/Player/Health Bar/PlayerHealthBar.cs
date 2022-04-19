@@ -10,5 +10,5 @@ public class PlayerHealthBar : MonoBehaviour
 
     public void OnHealthBarChange() => sliderComponents.SetActive((slider.value = PlayerStats.Instance.health / PlayerStats.Instance.maxHealth) < 1 ? true : false);
 
-    private void Update() => transform.parent.parent.position = player.transform.position;
+    private void Update() => transform.parent.parent.position = new Vector2(player.transform.position.x - 1.3f, player.transform.position.y);
 }

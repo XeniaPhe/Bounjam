@@ -40,21 +40,19 @@ public class EnemyAI : MonoBehaviour
     {
         if (!CheckPlayerInMoveRange())
         {
-            Debug.Log("ajshdasdsahjdajsd213123123123");
             isAttacking = false;
             isRunning = false;
             return;
         }
         else if (CheckPlayerInAttackRange())
         {
-            Debug.Log("ajshdasdsahjdajsd1");
-            if (!isCooldown) return;
+            if (isCooldown) return;
             isCooldown = true;
             isAttacking = true;
             PlayerStats.Instance.TakeDamage(10);
             StartCoroutine(EndCooldown());
         }
-        else Debug.Log("sdasdasdsad");
+        else MoveTowardsPlayer();
 
         if(!isAttacking)
             isRunning = true;
@@ -70,6 +68,7 @@ public class EnemyAI : MonoBehaviour
 
     public void UpdateAnimations()
     {
+        return;
         animator.SetBool("Running", isRunning);
         animator.SetBool("Attacking", isAttacking);
     }
