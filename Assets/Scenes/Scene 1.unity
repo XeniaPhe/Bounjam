@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 498823586}
   m_Layer: 6
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4687,7 +4687,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2730653179536545846, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
   m_PrefabInstance: {fileID: 2053320779}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1985890013}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd9077899fa67844abd5dc4d9fc48728, type: 3}
@@ -4884,7 +4884,7 @@ GameObject:
   - component: {fileID: 1584692815}
   m_Layer: 0
   m_Name: BackTilemap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7937,6 +7937,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1985890013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2730653179536545840, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
+  m_PrefabInstance: {fileID: 2053320779}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1985890023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985890013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1e5112764034159a0c3292cad165ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2053320779
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7958,11 +7975,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2730653179536545842, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 228.92
+      value: -10.38
       objectReference: {fileID: 0}
     - target: {fileID: 2730653179536545842, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.33
+      value: -11.66
       objectReference: {fileID: 0}
     - target: {fileID: 2730653179536545842, guid: 4bd3934a7cdc8ce44a36e44a66d9af2c, type: 3}
       propertyPath: m_LocalPosition.z

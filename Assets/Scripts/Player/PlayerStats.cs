@@ -75,6 +75,7 @@ public class PlayerStats : MonoBehaviour
 
     public void Rebirth()
     {
+        PlayerDeath.Instance.isCooldown = false;
         health = maxHealth;
         gameObject.SetActive(true);
         continuePlaying.gameObject.SetActive(false);

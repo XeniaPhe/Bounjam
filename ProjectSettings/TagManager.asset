@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FxTemporaire
   - Reward
+  - Ground
   layers:
   - Default
   - TransparentFX
